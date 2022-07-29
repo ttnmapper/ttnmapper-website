@@ -1,0 +1,52 @@
+{
+  "network": {
+    "network_id": "NS_TTS_V3://ttn@000013",
+    "network_name": "The Things Network"
+  },
+  "analytics": {
+    "site_id": "UA-75921430-1",
+    "measurement_id": "UA-75921430-1"
+  },
+  "theming": {
+    "site_name": "TTN Coverage",
+    "site_description": "Coverage of The Things Network",
+    "favicon_dir": "/config/favicons",
+    "brand_icon": "/config/TTNMapper.svg",
+    "brand_name": "TTN Mapper",
+    "map_start_lat": 48.2,
+    "map_start_lon": 10.2,
+    "map_start_zoom": 6,
+    "cluster_gateways": true,
+    "marker_cluster_radius": 20,
+    "show_unmapped_gateways": true,
+
+    "gateway_icon_size_x": 20,
+    "gateway_icon_size_y": 20,
+    "gateway_icon_anchor_x": 10,
+    "gateway_icon_anchor_y": 10,
+    "gateway_popup_anchor_x": 2,
+    "gateway_popup_anchor_y": 2,
+
+    "gateway_ttnv2_online": "/config/gateway_dot.png",
+    "gateway_ttnv2_offline": "/config/gateway_dot_red.png",
+    "gateway_ttsv3_online": "/config/TTS_V3_GW_flags.svg",
+    "gateway_ttsv3_offline": "/config/TTS_V3_GW_flags_red.svg",
+    "gateway_private_online": "/config/TTS_V3_GW_flags_h200.svg",
+    "gateway_private_offline": "/config/TTS_V3_GW_flags_h200.svg",
+    "gateway_chirp_online": "/config/chirpstack-gateway.svg",
+    "gateway_helium_online": "/config/helium-gateway-white-center.svg",
+    "gateway_helium_offline": "/config/helium-gateway-white-center-orange.svg",
+    "gateway_default": "/config/gateway_dot.png"
+  },
+  "menu": {
+    "menu_advanced": true,
+    "menu_heatmap": true,
+    "menu_colour_radar": false,
+    "menu_area_plot": false,
+    "menu_leaderboard": false,
+    "menu_acknowledgements": false,
+    "menu_faq": false,
+    "teespring": false,
+    "patreon": true
+  }
+}

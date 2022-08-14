@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<pre id="csvcontent">
+    Loading...
+</pre>
+
+<!-- Moment for datetime manipulation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js" integrity="sha512-fFkDTD3GpiLXZBIrfRu0etHZkCdWPkcNy4TjDqI3gQFVfbbDRFG5vV7w3mIeeOCvUY5cEKTUFiTetIsFtWjF1Q==" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/common.js"></script>
+
+<script>
+    var gatewayData = {};
+    var pointData = {};
+
+  getData();
+
+  function getData() {
+    var startTime = moment(findGetParameter("startdate"));
+    var endTime = moment(findGetParameter("enddate"));
+
+    // If no start and end times provided, use today
+    if (!startTime.isValid()) {
+      startTime = moment().startOf('day');
+    }
+    if (!endTime.isValid()) {
+      endTime = moment().startOf('day');
+    }
+
+    // If end time is only a date, add time
+    if (endTime.hour() === 0 && endTime.minute() === 0 && endTime.second() === 0) {
+      endTime.add(1, 'days');
+    }
+
+      var url = new URL('https://api.ttnmapper.org/gateway/data')
+      var params = {
+          gateway_id: findGetParameter("gateway"),
+          start_time: startTime.toISOString(),
+          end_time: endTime.toISOString()
+      };
+      const network_id = findGetParameter("network_id");
+      if(network_id != null) {
+          params.network_id = network_id;
+      }
+
+    url.search = new URLSearchParams(params).toString();
+    fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              pointData = data;
+            var targetDiv = document.getElementById("csvcontent");
+            targetDiv.innerHTML = "database_id,time,dev_id,dev_eui,app_id,device_network_id,gateway_id,gateway_network_id,gateway_time,antenna_index,channel_index,fine_timestamp,frequency,spreading_factor,bandwidth,bitrate,coding_rate,f_cnt,f_port,modulation,rssi,signal_rssi,snr,latitude,longitude,altitude,accuracy_meters,hdop,satellites,location_source,experiment,user_agent\n";
+              for (point of data) {
+                getGatewayLocation(point['gateway_network_id'], point['gateway_id']);
+              }
+            });
+  }
+
+
+  function getGatewayLocation(network_id, gateway_id) {
+    if (gatewayData[network_id] === undefined) {
+      gatewayData[network_id] = {};
+    }
+    if (gatewayData[network_id][gateway_id] === undefined) {
+      gatewayData[network_id][gateway_id] = "busy";
+      const res = fetch("https://api.ttnmapper.org/gateway/" + encodeURIComponent(network_id) + "/" + encodeURIComponent(gateway_id) + "/details")
+              .then(response => response.json())
+              .then(gateway => {
+                gatewayData[network_id][gateway_id] = gateway;
+                addLines(network_id, gateway_id);
+              });
+    }
+  }
+
+  function addLines(network_id, gateway_id) {
+
+      const gateway = gatewayData[network_id][gateway_id];
+
+      for (const data of pointData) {
+          if (data['gateway_id'] !== gateway_id || data['gateway_network_id'] !== network_id) {
+              continue;
+          }
+
+          var targetDiv = document.getElementById("csvcontent");
+          targetDiv.innerHTML += data['database_id'] + ",";
+          targetDiv.innerHTML += data['time'] + ",";
+          targetDiv.innerHTML += data['dev_id'] + ",";
+          targetDiv.innerHTML += data['dev_eui'] + ",";
+          targetDiv.innerHTML += data['app_id'] + ",";
+          targetDiv.innerHTML += data['device_network_id'] + ",";
+          targetDiv.innerHTML += data['gateway_id'] + ",";
+          targetDiv.innerHTML += data['gateway_network_id'] + ",";
+          targetDiv.innerHTML += data['gateway_time'] + ",";
+          targetDiv.innerHTML += data['antenna_index'] + ",";
+          targetDiv.innerHTML += data['channel_index'] + ",";
+          targetDiv.innerHTML += data['fine_timestamp'] + ",";
+          targetDiv.innerHTML += data['frequency'] + ",";
+          targetDiv.innerHTML += data['spreading_factor'] + ",";
+          targetDiv.innerHTML += data['bandwidth'] + ",";
+          targetDiv.innerHTML += data['bitrate'] + ",";
+          targetDiv.innerHTML += data['coding_rate'] + ",";
+          targetDiv.innerHTML += data['f_cnt'] + ",";
+          targetDiv.innerHTML += data['f_port'] + ",";
+          targetDiv.innerHTML += data['modulation'] + ",";
+          targetDiv.innerHTML += data['rssi'] + ",";
+          targetDiv.innerHTML += data['signal_rssi'] + ",";
+          targetDiv.innerHTML += data['snr'] + ",";
+          targetDiv.innerHTML += data['latitude'] + ",";
+          targetDiv.innerHTML += data['longitude'] + ",";
+          targetDiv.innerHTML += data['altitude'] + ",";
+          targetDiv.innerHTML += data['accuracy_meters'] + ",";
+          targetDiv.innerHTML += data['hdop'] + ",";
+          targetDiv.innerHTML += data['satellites'] + ",";
+          targetDiv.innerHTML += data['location_source'] + ",";
+          targetDiv.innerHTML += data['experiment'] + ",";
+          targetDiv.innerHTML += data['user_agent'];
+          targetDiv.innerHTML += "\n";
+      }
+  }
+</script>
+</body>
+</html>

@@ -59,7 +59,7 @@ function findExperiments(experiment) {
                   <form target="_blank">
                     <input type="hidden" name="experiment" value="${he.encode(experiment.name)}">
                     <a href="/experiments/csv.php?experiment=${he.encode(experiment.name)}">
-                      <button type="submit" class="btn btn-secondary" formaction="/experiments/csv.php">CSV data</button>
+                      <button type="submit" class="btn btn-secondary" formaction="/experiments/csv.html">CSV data</button>
                     </a>
                   </form>
                 `;

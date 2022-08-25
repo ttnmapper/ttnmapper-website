@@ -107,4 +107,8 @@ if (isset($settings['analytics']['measurement_id'])) {
         gtag('config', '<?php echo $googleAnalyticsMeasurementId; ?>');
     </script>
 
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4919960117739141"
+            crossorigin="anonymous"></script>
+
 </head>

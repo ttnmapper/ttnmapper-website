@@ -52,6 +52,19 @@
 <div class="container ">
     <h1 class="mt-4">Advanced Maps</h1>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4919960117739141"
+            crossorigin="anonymous"></script>
+    <!-- Mapper Advanced Banner -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4919960117739141"
+         data-ad-slot="8617327512"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
     <div class="card mt-4">
         <h5 class="card-header">Device data</h5>
         <div class="card-body">

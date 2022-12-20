@@ -13,17 +13,18 @@ async function setUp() {
     await initMap();
 
     addBackgroundLayers();
-    if (findGetParameter("gateways") !== "off") {
+    console.log(findGetParameter("gateways"));
+    if (findGetParameter("gateways") !== null && findGetParameter("gateways") !== "off") {
         if(settings.theming.cluster_gateways) {
             gatewayMarkersCluster.addTo(map);
         } else {
             gatewayMarkersNoCluster.addTo(map);
         }
     }
-    if (findGetParameter("points") !== "off") {
+    if (findGetParameter("points") !== null && findGetParameter("points") !== "off") {
         pointMarkers.addTo(map);
     }
-    if (findGetParameter("lines") !== "off") {
+    if (findGetParameter("lines") !== null && findGetParameter("lines") !== "off") {
         lineMarkers.addTo(map);
     }
     getData();

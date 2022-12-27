@@ -64,18 +64,22 @@ function AddGateways(network) {
     for(gateway of data) {
       let lastHeardDate = Date.parse(gateway.last_heard);
 
-      // Only add gateways last heard in past 5 days
-      if(lastHeardDate > (Date.now() - (5*24*60*60*1000)) ) {
-        let marker = L.marker(
-        [ gateway.latitude, gateway.longitude ], 
-        {
-            icon: iconByNetworkId(gateway.network_id, lastHeardDate)
-        });
-        const gwDescriptionHead = popUpHeader(gateway);
-        const gwDescription = popUpDescription(gateway);
-        marker.bindPopup(`${gwDescriptionHead}<br>${gwDescription}`);
-        gatewayMarkersCluster.addLayer(marker);
-        gatewayMarkersNoCluster.addLayer(marker);
+      if (Math.abs(gateway.latitude) < 1 && Math.abs(gateway.longitude) < 1) {
+        console.log("Gateway " + gateway.gateway_id + " on NULL island");
+      } else {
+        // Only add gateways last heard in past 5 days
+        if (lastHeardDate > (Date.now() - (5 * 24 * 60 * 60 * 1000))) {
+          let marker = L.marker(
+              [gateway.latitude, gateway.longitude],
+              {
+                icon: iconByNetworkId(gateway.network_id, lastHeardDate)
+              });
+          const gwDescriptionHead = popUpHeader(gateway);
+          const gwDescription = popUpDescription(gateway);
+          marker.bindPopup(`${gwDescriptionHead}<br>${gwDescription}`);
+          gatewayMarkersCluster.addLayer(marker);
+          gatewayMarkersNoCluster.addLayer(marker);
+        }
       }
     }
 

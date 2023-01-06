@@ -86,7 +86,7 @@ function AddGateways(network) {
       let lastHeardDate = Date.parse(gateway.last_heard);
 
       if(Math.abs(gateway.latitude) < 1 && Math.abs(gateway.longitude) < 1) {
-        console.log("Gateway " + gateway.gateway_id + " on NULL island");
+        // console.log("Gateway " + gateway.gateway_id + " on NULL island");
       } else {
         // Only add gateways last heard in past 5 days
         if (lastHeardDate > (Date.now() - (5 * 24 * 60 * 60 * 1000))) {

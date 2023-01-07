@@ -35,13 +35,19 @@ body {
   visibility: hidden;
 }
 
-#leftcontainer
+#adholder
 {
-  position: absolute;
-  left: 20px;
-  bottom: 30px;
-  z-index: 500;
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
+  /*z-index: 500;*/
   /*visibility: hidden;*/
+  /*width: 100%;*/
+  /*height: 90px;*/
+  width:100%;
+  display: flex;
+  justify-content: center;
 }
 
 

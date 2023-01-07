@@ -64,6 +64,18 @@
         <div class="loader"></div>
         <p>Fetching data, please be patient.</p>
     </div>
+
+    <div id="adholder">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4919960117739141"
+                crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:flex;width:100%;height:90px"
+             data-ad-client="ca-pub-4919960117739141"
+             data-ad-slot="5825886219"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 </div>
 
 <!-- Include required libraries -->

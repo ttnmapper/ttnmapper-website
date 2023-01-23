@@ -12,6 +12,7 @@
     "favicon_dir": "/config/favicons",
     "brand_icon": "/config/TTNMapper.svg",
     "brand_name": "TTN Mapper",
+
     "map_start_lat": 48.2,
     "map_start_lon": 10.2,
     "map_start_zoom": 6,

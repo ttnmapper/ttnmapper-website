@@ -63,6 +63,7 @@
 <!--                crossorigin="anonymous"></script>-->
 <!--        <ins class="adsbygoogle"-->
 <!--             style="display:flex;width:100%;height:90px"-->
+<!--    data-full-width-responsive="true"-->
 <!--             data-ad-client="ca-pub-4919960117739141"-->
 <!--             data-ad-slot="5825886219"></ins>-->
 <!--        <script>-->

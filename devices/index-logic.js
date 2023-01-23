@@ -123,7 +123,7 @@ function addLines(network_id, gateway_id) {
         console.log("Gateway " + gateway_id + " on NULL island");
     }
 
-    for (data of pointData) {
+    for (let data of pointData) {
         if (data['gateway_id'] !== gateway_id || data['gateway_network_id'] !== network_id) {
             continue;
         }

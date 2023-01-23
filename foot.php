@@ -14,7 +14,7 @@
         integrity="sha256-bqVeqGdJ7h/lYPq6xrPv/YGzMEb6dNxlfiTUHSgRCp8=" crossorigin="anonymous"></script>
 
 <!-- Leaflet -->
-<script src="/libs/leaflet/leaflet.js"></script>
+<script src="/libs/leaflet-1.9.3/leaflet.js"></script>
 <script src="/libs/leaflet.measure/leaflet.measure.js"></script>
 <script src="/libs/Leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 

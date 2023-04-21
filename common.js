@@ -380,7 +380,7 @@ function iconByNetworkId(networkId, lastHeardDate) {
     }
     return gatewayMarkerTTSV3Online;
   }
-  if(networkId.startsWith("NS_TTS_V3://")) {
+  if(networkId.startsWith("NS_TTS_V3")) {
     if(lastHeardDate < (Date.now() - (1*60*60*1000)) ) {
       return gatewayMarkerPrivateOffline;
     }
@@ -399,26 +399,34 @@ function iconByNetworkId(networkId, lastHeardDate) {
 }
 
 function popUpHeader(gateway) {
-  let header = `<b>${he.encode(gateway.gateway_id)}</b>`
+  let header = ""
 
   if(gateway.name !== "") {
-    header = `<b>${he.encode(gateway.name)}</b>`
-    header += `<br>ID: ${gateway.gateway_id}`
+    header += `<b>Name</b> ${he.encode(gateway.name)}<br />`
+    header += `<b>ID</b> ${gateway.gateway_id}<br />`
+  } else if(gateway.gateway_id !== "") {
+    header += `<b>ID</b> ${he.encode(gateway.gateway_id)}<br />`
   }
 
   // Add the EUI if it is set
   if (gateway.gateway_eui !== "") {
-    header += `<br>EUI: ${gateway.gateway_eui}`
+    header += `<b>EUI</b> ${gateway.gateway_eui}<br />`
   }
 
   // Add the network ID if it is set
-  if (gateway.network_id !== "") {
-    header += `<br>Network: ${gateway.network_id}`
+  if (gateway.network_id.includes(":")) {
+    header += `<b>Network</b> ${gateway.network_id}<br />`
   }
 
   if (gateway.network_id !== "NS_TTS_V3://ttn@000013" && gateway.network_id !== "thethingsnetwork.org" && gateway.network_id !== "NS_HELIUM://000024") {
-    header = `<b>${he.encode(gateway.network_id)}</b>`
-    header += `<br>private network peering with TTN`
+    header += `<i>Private network peering with TTN</i><br />`
+    if(!gateway.network_id.includes(":")) {
+      header += `<i><a href="https://www.patreon.com/ttnmapper">Subscribe</a> to see gateway details</i><br />`
+    }
+  }
+
+  if (gateway.attributes.description !== undefined && gateway.attributes.description !== "") {
+    header += `<b>Description</b> ${gateway.attributes.description}<br />`
   }
 
   return header
@@ -428,23 +436,27 @@ function popUpDescription(gateway) {
   var description = "";
 
   if(Date.parse(gateway.last_heard) < (Date.now() - (1*60*60*1000)) ) {
-    description += `<br>currently offline`;
+    description += `currently offline<br />`;
   }
 
   if(gateway.attributes.mode !== undefined) {
-    description += `<br>Mode: ${gateway.attributes.mode}`;
+    description += `<b>Mode</b> ${gateway.attributes.mode}<br />`;
   }
   if(gateway.attributes.timestamp_added !== undefined) {
     const addedTime = moment(gateway.attributes.timestamp_added/1000000)
-    description += `<br>Added: ${addedTime.tz(moment.tz.guess()).format("llll zz")}`;
+    description += `<b>Added</b> ${addedTime.tz(moment.tz.guess()).format("llll zz")}<br />`;
   }
 
   const lastHeardTime = moment(gateway.last_heard);
   description += `
-<br>Last heard: ${lastHeardTime.tz(moment.tz.guess()).format("llll zz")}
-<br>Lat, Lon: ${gateway.latitude}, ${gateway.longitude}
-<br>Altitude: ${gateway.altitude}m
-<br>Show only this gateway's coverage as: 
+<b>Last heard</b> ${lastHeardTime.tz(moment.tz.guess()).format("llll zz")}<br />
+<b>Lat, Lon</b> ${gateway.latitude}, ${gateway.longitude}<br />
+<b>Altitude</b> ${gateway.altitude}m<br />`;
+
+  // valid network ids have a colon
+  if(gateway.network_id.includes(":")) {
+    description += `
+Show only this gateway's coverage as:<br /> 
 <ul>
   <li>
     <a target="_blank" href="/heatmap/gateway/?gateway=${he.encode(gateway.gateway_id)}&network=${he.encode(gateway.network_id)}">heatmap</a>
@@ -454,6 +466,7 @@ function popUpDescription(gateway) {
   </li>
 </ul>
 `
+  }
 
   return description;
 }

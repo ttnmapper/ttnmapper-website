@@ -22,12 +22,8 @@
 <script src="/libs/he/he.js"></script>
 
 <!-- Moment for datetime manipulation -->
-<script src="
-https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js
-"></script>
-<script src="
-https://cdn.jsdelivr.net/npm/moment-timezone@0.5.43/moment-timezone.min.js
-"></script>
+<script src="/libs/moment/moment.2.29.4.min.js"></script>
+<script src="/libs/moment/moment-timezone-with-data.0.5.43.min.js"></script>
 
 <script>
     $(function () {

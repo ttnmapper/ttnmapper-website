@@ -153,16 +153,6 @@ function addBackgroundLayers() {
     fadeAnimation: false
   });
 
-  // https: also suppported.
-  var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> | Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    subdomains: 'abcd',
-    minZoom: 0,
-    maxZoom: 20,
-    ext: 'png',
-    fadeAnimation: false
-  });
-
   let OpenStreetMap_Mapnik;
   let OpenStreetMap_Mapnik_Grayscale;
   if(location.hostname === "ttnmapper.org") {
@@ -220,7 +210,7 @@ function addBackgroundLayers() {
       break;
     default:
       // use default layer
-      Stamen_TonerLite.addTo(map);
+      OpenStreetMap_Mapnik_Grayscale.addTo(map);
   }
 
   var layerControlOptions = {};
@@ -236,10 +226,9 @@ function addBackgroundLayers() {
 
   layerControl = L.control.layers(
     {
-      "Stamen TonerLite": Stamen_TonerLite,
       "OSM Mapnik Grayscale": OpenStreetMap_Mapnik_Grayscale,
-      "Terrain": Esri_WorldShadedRelief, 
-      "OSM Mapnik": OpenStreetMap_Mapnik,
+      "OSM Mapnik Colour": OpenStreetMap_Mapnik,
+      "Terrain": Esri_WorldShadedRelief,
       "Satellite": Esri_WorldImagery
     },
     {},

@@ -36,6 +36,8 @@
     "gateway_chirp_online": "/config/chirpstack-gateway.svg",
     "gateway_helium_online": "/config/helium-gateway-white-center.svg",
     "gateway_helium_offline": "/config/helium-gateway-white-center-orange.svg",
+    "gateway_thingsix_online": "/config/thingsix_gateway.svg",
+    "gateway_thingsix_offline": "/config/thingsix_gateway.svg",
     "gateway_default": "/config/gateway_dot.png"
   },
   "menu": {

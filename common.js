@@ -94,6 +94,19 @@ async function initMap() {
     popupAnchor:  [settings.theming.gateway_popup_anchor_x, settings.theming.gateway_popup_anchor_y] // point from which the popup should open relative to the iconAnchor
   });
 
+  gatewayMarkerThingsIxOnline = L.icon({
+    iconUrl: settings.theming.gateway_thingsix_online,
+    iconSize:     [settings.theming.gateway_icon_size_x, settings.theming.gateway_icon_size_y], // size of the icon
+    iconAnchor:   [settings.theming.gateway_icon_anchor_x, settings.theming.gateway_icon_anchor_y], // point of the icon which will correspond to marker\'s location
+    popupAnchor:  [settings.theming.gateway_popup_anchor_x, settings.theming.gateway_popup_anchor_y] // point from which the popup should open relative to the iconAnchor
+  });
+  gatewayMarkerThingsIxOffline = L.icon({
+    iconUrl: settings.theming.gateway_thingsix_offline,
+    iconSize:     [settings.theming.gateway_icon_size_x, settings.theming.gateway_icon_size_y], // size of the icon
+    iconAnchor:   [settings.theming.gateway_icon_anchor_x, settings.theming.gateway_icon_anchor_y], // point of the icon which will correspond to marker\'s location
+    popupAnchor:  [settings.theming.gateway_popup_anchor_x, settings.theming.gateway_popup_anchor_y] // point from which the popup should open relative to the iconAnchor
+  });
+
   gatewayMarkerDefault = L.icon({
     iconUrl: settings.theming.gateway_default,
     iconSize:     [settings.theming.gateway_icon_size_x, settings.theming.gateway_icon_size_y], // size of the icon
@@ -384,6 +397,12 @@ function iconByNetworkId(networkId, lastHeardDate) {
     }
     return gatewayMarkerHeliumOnline;
   }
+  if(networkId.startsWith("NS_THINGSIX")) {
+    if(lastHeardDate < (Date.now() - (2*24*60*60*1000)) ) {
+      return gatewayMarkerThingsIxOffline;
+    }
+    return gatewayMarkerThingsIxOnline;
+  }
   return gatewayMarkerDefault;
 }
 
@@ -403,13 +422,17 @@ function popUpHeader(gateway) {
   }
 
   // Add the network ID if it is set
-  if (gateway.network_id.includes(":")) {
+  if (gateway.network_id.includes("NS_")) {
     header += `<b>Network</b> ${gateway.network_id}<br />`
   }
 
-  if (gateway.network_id !== "NS_TTS_V3://ttn@000013" && gateway.network_id !== "thethingsnetwork.org" && gateway.network_id !== "NS_HELIUM://000024") {
+  if (gateway.network_id !== "NS_TTS_V3://ttn@000013"
+      && gateway.network_id !== "thethingsnetwork.org"
+      && gateway.network_id !== "NS_HELIUM://000024"
+      && gateway.network_id !== "NS_THINGSIX"
+  ) {
     header += `<i>Private network peering with TTN</i><br />`
-    if(!gateway.network_id.includes(":")) {
+    if(!gateway.network_id.includes("NS_")) {
       header += `<i><a href="https://www.patreon.com/ttnmapper">Subscribe</a> to see gateway details</i><br />`
     }
   }

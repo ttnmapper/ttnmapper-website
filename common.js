@@ -24,6 +24,9 @@ var gatewayMarkerChirpV3;
 var gatewayMarkerHeliumOnline;
 var gatewayMarkerHeliumOffline;
 
+var gatewayMarkerThingsIxOnline;
+var gatewayMarkerThingsIxOffline;
+
 var gatewayMarkerDefault;
 
 async function initMap() {
@@ -168,22 +171,22 @@ function addBackgroundLayers() {
 
   let OpenStreetMap_Mapnik;
   let OpenStreetMap_Mapnik_Grayscale;
-  if(location.hostname === "ttnmapper.org") {
-
-    OpenStreetMap_Mapnik = L.tileLayer('https://maps.iotdash.nl/osm/{z}/{x}/{y}.png', {
-      maxZoom: 20,
-      attribution: '<a href="https://www.skylab.nl" title="Powered by SkyLab B.V.">Powered by SkyLab B.V.</a> | <a href="https://www.openstreetmap.org" title="&copy; OpenStreetMap">&copy; OpenStreetMap</a>',
-      fadeAnimation: false
-    });
-
-    OpenStreetMap_Mapnik_Grayscale = L.tileLayer('https://maps.iotdash.nl/osm/{z}/{x}/{y}.png', {
-      maxZoom: 20,
-      attribution: '<a href="https://www.skylab.nl" title="Powered by SkyLab B.V.">Powered by SkyLab B.V.</a> | <a href="https://www.openstreetmap.org" title="&copy; OpenStreetMap">&copy; OpenStreetMap</a>',
-      fadeAnimation: false,
-      className: 'toGrayscale'
-    });
-
-  } else {
+  // if(location.hostname === "ttnmapper.org") {
+  //
+  //   OpenStreetMap_Mapnik = L.tileLayer('https://maps.iotdash.nl/osm/{z}/{x}/{y}.png', {
+  //     maxZoom: 20,
+  //     attribution: '<a href="https://www.skylab.nl" title="Powered by SkyLab B.V.">Powered by SkyLab B.V.</a> | <a href="https://www.openstreetmap.org" title="&copy; OpenStreetMap">&copy; OpenStreetMap</a>',
+  //     fadeAnimation: false
+  //   });
+  //
+  //   OpenStreetMap_Mapnik_Grayscale = L.tileLayer('https://maps.iotdash.nl/osm/{z}/{x}/{y}.png', {
+  //     maxZoom: 20,
+  //     attribution: '<a href="https://www.skylab.nl" title="Powered by SkyLab B.V.">Powered by SkyLab B.V.</a> | <a href="https://www.openstreetmap.org" title="&copy; OpenStreetMap">&copy; OpenStreetMap</a>',
+  //     fadeAnimation: false,
+  //     className: 'toGrayscale'
+  //   });
+  //
+  // } else {
 
     OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 20,
@@ -198,7 +201,7 @@ function addBackgroundLayers() {
       className: 'toGrayscale'
     });
 
-  }
+  // }
 
   // https: also suppported.
   var Esri_WorldShadedRelief = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
@@ -422,7 +425,7 @@ function popUpHeader(gateway) {
   }
 
   // Add the network ID if it is set
-  if (gateway.network_id.includes("NS_")) {
+  if (gateway.network_id !== "") {
     header += `<b>Network</b> ${gateway.network_id}<br />`
   }
 

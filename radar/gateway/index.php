@@ -29,21 +29,9 @@
                     <a class="nav-link" href="/advanced-maps/">Advanced maps</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/acknowledgements/">Acknowledgements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://coveragemap.net">Helium</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://docs.ttnmapper.org">Docs</a>
+                    <a class="nav-link" href="https://coveragemap.net">CoverageMap.net</a>
                 </li>
             </ul>
-        </div>
-
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <div class="navbar-nav ml-auto">
-                <a href="https://docs.ttnmapper.org/support-project.html" target="_blank"><button class="btn btn-primary">Support the project</button></a>
-            </div>
         </div>
 
     </nav>

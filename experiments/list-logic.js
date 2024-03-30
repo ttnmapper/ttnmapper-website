@@ -49,6 +49,9 @@ function findExperiments(experiment) {
                 cellTwo.innerHTML = `
                   <form target="_blank">
                     <input type="hidden" name="experiment" value="${he.encode(experiment.name)}">
+                    <input type="hidden" name="points" value="on">
+                    <input type="hidden" name="gateways" value="on">
+                    <input type="hidden" name="lines" value="on">
                     <a href="/experiments/?experiment=${he.encode(experiment.name)}&points=on&gateways=on&lines=on">
                       <button type="submit" class="btn btn-primary" formaction="/experiments/">View Map</button>
                     </a>

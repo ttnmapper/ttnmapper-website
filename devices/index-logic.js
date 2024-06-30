@@ -62,7 +62,8 @@ function getData() {
     var url = new URL('https://api.ttnmapper.org/device/data')
     var params = {
         start_time: startTime.toISOString(),
-        end_time: endTime.toISOString()
+        end_time: endTime.toISOString(),
+        limit: 10000
     };
     const dev_id = findGetParameter("device");
     const app_id = findGetParameter("application");

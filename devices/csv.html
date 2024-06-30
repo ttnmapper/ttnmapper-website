@@ -49,13 +49,13 @@
         const app_id = findGetParameter("application");
         const network_id = findGetParameter("network_id");
         if(dev_id !== null) {
-            params.dev_id = app_id;
+            params.dev_id = dev_id;
         }
         if(app_id !== null) {
             params.app_id = app_id;
         }
         if(network_id !== null) {
-            params.network_id = app_id;
+            params.network_id = network_id;
         }
 
         url.search = new URLSearchParams(params).toString();

@@ -152,11 +152,11 @@ function addLines(network_id, gateway_id) {
             const lineMarker = L.polyline([[data['latitude'], data['longitude']], [gwLat, gwLon]], lineOptions);
             lineMarker.bindPopup(
                 data['time'] +
-                '<br /><b>AppID:</b> ' + data['app_id'] +
-                '<br /><b>DevID:</b> ' + data['dev_id'] +
-                '<br /><b>Device Network:</b> ' + data['device_network_id'] +
-                '<br /><b>Gateway ID:</b> <br />' + data['gateway_id'] +
-                '<br /><b>Gateway Network:</b> <br />' + data['gateway_network_id'] +
+                '<br /><b>AppID:</b> ' + htmlencode(data['app_id']) +
+                '<br /><b>DevID:</b> ' + htmlencode(data['dev_id']) +
+                '<br /><b>Device Network:</b> ' + htmlencode(data['device_network_id']) +
+                '<br /><b>Gateway ID:</b> <br />' + htmlencode(data['gateway_id']) +
+                '<br /><b>Gateway Network:</b> <br />' + htmlencode(data['gateway_network_id']) +
                 '<br /><b>Location accuracy:</b> ' + data['accuracy_meters'] +
                 '<br /><b>Satellite count:</b> ' + data['satellites'] +
                 '<br /><b>HDOP:</b> ' + data['hdop'] +
@@ -182,11 +182,11 @@ function addLines(network_id, gateway_id) {
         const pointMarker = L.circleMarker([data['latitude'], data['longitude']], markerOptions);
         pointMarker.bindPopup(
             data['time'] +
-            '<br /><b>AppID:</b> ' + data['app_id'] +
-            '<br /><b>DevID:</b> ' + data['dev_id'] +
-            '<br /><b>Device Network:</b> ' + data['device_network_id'] +
-            '<br /><b>Gateway ID:</b> <br />' + data['gateway_id'] +
-            '<br /><b>Gateway Network:</b> <br />' + data['gateway_network_id'] +
+            '<br /><b>AppID:</b> ' + htmlencode(data['app_id']) +
+            '<br /><b>DevID:</b> ' + htmlencode(data['dev_id']) +
+            '<br /><b>Device Network:</b> ' + htmlencode(data['device_network_id']) +
+            '<br /><b>Gateway ID:</b> <br />' + htmlencode(data['gateway_id']) +
+            '<br /><b>Gateway Network:</b> <br />' + htmlencode(data['gateway_network_id']) +
             '<br /><b>Location accuracy:</b> ' + data['accuracy_meters'] +
             '<br /><b>Satellite count:</b> ' + data['satellites'] +
             '<br /><b>HDOP:</b> ' + data['hdop'] +

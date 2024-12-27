@@ -485,3 +485,10 @@ Show only this gateway's coverage as:<br />
 
   return description;
 }
+
+function htmlencode (str){
+
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}

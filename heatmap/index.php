@@ -38,6 +38,16 @@
 
     </nav>
 
+    <!-- The Notice (Alert) -->
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <a class="alert-link" href="https://www.thethingsnetwork.org/forum/t/ttn-mapper-time-to-shut-down/72749">
+            Please read this important announcement regarding the TTN Mapper service.
+        </a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <div id="map">
         <div id="rightcontainer">
             <div id="legend" class="dropSheet"></div>
